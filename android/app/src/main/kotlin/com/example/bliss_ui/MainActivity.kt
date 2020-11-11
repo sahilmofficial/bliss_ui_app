@@ -1,4 +1,4 @@
-package com.example.bliss_ui
+package com.example.bliss_ui_app
 
 import io.flutter.embedding.android.FlutterActivity
 
