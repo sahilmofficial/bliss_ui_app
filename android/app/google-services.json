@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "723479112254",
+    "firebase_url": "https://blisstestapp.firebaseio.com",
+    "project_id": "blisstestapp",
+    "storage_bucket": "blisstestapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723479112254:android:6ba810273014ba504b3f6f",
+        "android_client_info": {
+          "package_name": "com.bliss.blisstestapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723479112254-vsbhjlcg99silgumfbg4brhmnesd3mjh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bliss.blisstestapp",
+            "certificate_hash": "6415f64538a13627347bf1b2b36365aa6c20379e"
+          }
+        },
+        {
+          "client_id": "723479112254-hec7rci9q8496nm3uc16qfhd3bjimml1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGVnoZTdbvrwgrVySkzt2CM0IZHz97lio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723479112254-hec7rci9q8496nm3uc16qfhd3bjimml1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
