@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'drawer.dart';
-import "main.dart";
+import 'main.dart';
 import 'dart:io';
 import 'homepage.dart';
-import 'question_base_page.dart';
+import 'questions_second_page.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:core';
 // void main() {
 //   runApp(MyApp());
 // }
@@ -19,12 +22,15 @@ import 'question_base_page.dart';
 //   }
 // }
 
-class QuestionPage extends StatefulWidget {
+class QuestionBasePage extends StatefulWidget {
   @override
   _QuestionPageState createState() => new _QuestionPageState();
 }
 
-class _QuestionPageState extends State<QuestionPage> {
+class _QuestionPageState extends State<QuestionBasePage> {
+  List question = [];
+  String keyword = '';
+  int flag = 0;
   var username = MyHomePage.newestBinary["name"];
   @override
   void initState() {
@@ -66,15 +72,6 @@ class _QuestionPageState extends State<QuestionPage> {
     );
   }
 
-  // String countryId;
-  // List<String> country = [
-  //   "Fever",
-  //   "Cough",
-  //   "Chills",
-  //   "Itching",
-  //   "Neck Pain",
-  //   "Aches"
-  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,7 +107,7 @@ class _QuestionPageState extends State<QuestionPage> {
                 Container(
                   child: Center(
                       child: Text(
-                    'Please mention the gender for assesment.',
+                    'Do You have Chills?',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 32,
@@ -129,15 +126,26 @@ class _QuestionPageState extends State<QuestionPage> {
                     color: Colors.indigoAccent[100],
                     elevation: 7.0,
                     child: GestureDetector(
-                      onTap: () {
+                      onTap: () async {
+                        final response = await http.get(
+                            'https://blisstestapp.herokuapp.com/getquestions/chills/1');
+                        final decoded =
+                            json.decode(response.body) as Map<String, dynamic>;
+                        question = decoded['questions'];
+                        keyword = decoded['keyword'];
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => QuestionBasePage()));
+                                builder: (context) => QuestionSecondPage(
+                                      question: question,
+                                      keyword: keyword,
+                                      flag: flag,
+                                      list_length: question.length,
+                                    )));
                       },
                       child: Center(
                         child: Text(
-                          'Male',
+                          'Yes',
                           style: TextStyle(
                               fontSize: 14,
                               color: Colors.white,
@@ -161,33 +169,7 @@ class _QuestionPageState extends State<QuestionPage> {
                       onTap: () {},
                       child: Center(
                         child: Text(
-                          'Female',
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.white,
-                              //fontWeight: FontWeight.bold,
-                              fontFamily: 'Montserrat'),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 15.0),
-                Container(
-                  padding: EdgeInsets.only(left: 250.0, right: 20.0),
-                  height: 40.0,
-                  child: Material(
-                    borderRadius: BorderRadius.circular(20.0),
-                    //shadowColor: Colors.greenAccent,
-                    color: Colors.indigoAccent[100],
-                    elevation: 7.0,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Center(
-                        child: Text(
-                          'Back',
+                          'No',
                           style: TextStyle(
                               fontSize: 14,
                               color: Colors.white,
